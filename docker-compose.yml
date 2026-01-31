@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: asset-db
+    environment:
+      POSTGRES_USER: asset
+      POSTGRES_PASSWORD: asset
+      POSTGRES_DB: assetdb
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: asset-backend
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    container_name: asset-frontend
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"

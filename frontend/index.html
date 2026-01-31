@@ -1,34 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Asset Manager</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Asset Manager</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-    <header>
-        <h1>Asset Manager (Read Only)</h1>
-        <p>View organizational IT assets</p>
-    </header>
+<h1>Asset Manager</h1>
 
-    <nav>
-        <button onclick="loadAssets('laptops')">Laptops</button>
-        <button onclick="loadAssets('servers')">Servers</button>
-        <button onclick="loadAssets('switches')">Switches</button>
-        <button onclick="loadAssets('firewalls')">Firewalls</button>
-        <button onclick="loadAssets('access-points')">Access Points</button>
-    </nav>
+<nav>
+  <button onclick="loadLaptops()">Laptops</button>
+  <button onclick="loadAccessPoints()">Access Points</button>
+</nav>
 
-    <main>
-        <h2 id="assetTitle">Select an asset category</h2>
-        <table id="assetTable"></table>
-    </main>
+<div id="table-container"></div>
 
-    <footer>
-        <p>Asset Manager © 2026</p>
-    </footer>
-
-    <script src="app.js"></script>
+<script src="js/app.js"></script>
+<script src="js/laptops.js"></script>
+<script src="js/accessPoints.js"></script>
 </body>
 </html>
