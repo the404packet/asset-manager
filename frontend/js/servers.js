@@ -1,5 +1,5 @@
-async function loadLaptops() {
-  const data = await fetchData("laptops");
+async function loadServers() {
+  const data = await fetchData("servers");
 
   let html = `
     <table>
@@ -11,7 +11,7 @@ async function loadLaptops() {
         <th>RAM(GB)</th>
         <th>STORAGE(GB)</th>
         <th>OS</th>
-        <th>Serial No.</th>
+        <th>IP Address</th>
       </tr>
   `;
 
@@ -22,10 +22,10 @@ async function loadLaptops() {
         <td>${l.vendor}</td>
         <td>${l.model}</td>
         <td>${l.cpu}</td>
-        <td>${l.ram_gb}</td>
-        <td>${l.storage_gb}</td>
+        <td>${l.ram}</td>
+        <td>${l.storage}</td>
         <td>${l.os}</td>
-        <td>${l.serial_number}</td>
+        <td>${l.ip_address}</td>
       </tr>
     `;
   });

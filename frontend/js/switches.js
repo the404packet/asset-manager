@@ -1,5 +1,5 @@
-async function loadLaptops() {
-  const data = await fetchData("laptops");
+async function loadSwitches() {
+  const data = await fetchData("switches");
 
   let html = `
     <table>
@@ -7,11 +7,9 @@ async function loadLaptops() {
         <th>ID</th>
         <th>Vendor</th>
         <th>Model</th>
-        <th>CPU</th>
-        <th>RAM(GB)</th>
-        <th>STORAGE(GB)</th>
-        <th>OS</th>
-        <th>Serial No.</th>
+        <th>Ports</th>
+        <th>Firmware</th>
+        <th>Management IP</th>
       </tr>
   `;
 
@@ -21,11 +19,9 @@ async function loadLaptops() {
         <td>${l.id}</td>
         <td>${l.vendor}</td>
         <td>${l.model}</td>
-        <td>${l.cpu}</td>
-        <td>${l.ram_gb}</td>
-        <td>${l.storage_gb}</td>
-        <td>${l.os}</td>
-        <td>${l.serial_number}</td>
+        <td>${l.ports}</td>
+        <td>${l.firmware}</td>
+        <td>${l.management_ip}</td>
       </tr>
     `;
   });
