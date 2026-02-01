@@ -11,31 +11,20 @@
 
 <!-- Navigation -->
 <nav>
-  <button onclick="loadLaptops()">Laptops</button>
-  <button onclick="loadServers()">Servers</button>
-  <button onclick="loadFirewalls()">Firewalls</button>
-  <button onclick="loadSwitches()">Switches</button>
-  <button onclick="loadAccessPoints()">Access Points</button>
+  <button onclick="loadAsset('laptops')">Laptops</button>
+  <button onclick="loadAsset('servers')">Servers</button>
+  <button onclick="loadAsset('firewalls')">Firewalls</button>
+  <button onclick="loadAsset('switches')">Switches</button>
+  <button onclick="loadAsset('access_points')">Access Points</button>
 </nav>
 
-<!-- Filters (context-specific, reused) -->
-<div id="controls">
-  <input id="vendorFilter" type="text" placeholder="Vendor" />
-  <input id="ramFilter" type="number" placeholder="Min RAM (GB)" />
-  <button onclick="applyLaptopFilter()">Filter</button>
-  <button onclick="loadLaptops()">Reset</button>
-</div>
+<div id="controls"></div> 
 
 <!-- Dynamic content area -->
 <div id="table-container"></div>
 
 <!-- Scripts -->
 <script src="js/app.js"></script>
-<script src="js/laptops.js"></script>
-<script src="js/servers.js"></script>
-<script src="js/firewalls.js"></script>
-<script src="js/switches.js"></script>
-<script src="js/accessPoints.js"></script>
 
 </body>
 </html>

@@ -3,15 +3,32 @@ import pool from "../db.js";
 
 const router = express.Router();
 
+/**
+ * GET /api/laptops
+ * Supports dynamic filtering:
+ * /api/laptops?vendor=Dell&ram_gb=16
+ */
 router.get("/", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM laptops");
+    let query = "SELECT * FROM laptops WHERE 1=1";
+    const values = [];
+    let idx = 1;
+
+    for (const key in req.query) {
+      query += ` AND ${key} = $${idx++}`;
+      values.push(req.query[key]);
+    }
+
+    const result = await pool.query(query, values);
     res.json(result.rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
+/**
+ * POST /api/laptops
+ */
 router.post("/", async (req, res) => {
   const {
     vendor,
@@ -25,7 +42,7 @@ router.post("/", async (req, res) => {
 
   try {
     const result = await pool.query(
-      `INSERT INTO laptops 
+      `INSERT INTO laptops
        (vendor, model, cpu, ram_gb, storage_gb, os, serial_number)
        VALUES ($1,$2,$3,$4,$5,$6,$7)
        RETURNING *`,
@@ -38,6 +55,9 @@ router.post("/", async (req, res) => {
   }
 });
 
+/**
+ * DELETE /api/laptops/:id
+ */
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -52,34 +72,6 @@ router.delete("/:id", async (req, res) => {
     }
 
     res.json({ message: "Deleted", asset: result.rows[0] });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-router.get("/", async (req, res) => {
-  try {
-    let query = "SELECT * FROM laptops WHERE 1=1";
-    const values = [];
-    let idx = 1;
-
-    if (req.query.vendor) {
-      query += ` AND vendor = $${idx++}`;
-      values.push(req.query.vendor);
-    }
-
-    if (req.query.cpu) {
-      query += ` AND cpu = $${idx++}`;
-      values.push(req.query.cpu);
-    }
-
-    if (req.query.ram_gb) {
-      query += ` AND ram_gb >= $${idx++}`;
-      values.push(req.query.ram_gb);
-    }
-
-    const result = await pool.query(query, values);
-    res.json(result.rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
