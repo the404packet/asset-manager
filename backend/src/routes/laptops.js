@@ -3,11 +3,6 @@ import pool from "../db.js";
 
 const router = express.Router();
 
-/**
- * GET /api/laptops
- * Supports dynamic filtering:
- * /api/laptops?vendor=Dell&ram_gb=16
- */
 router.get("/", async (req, res) => {
   try {
     let query = "SELECT * FROM laptops WHERE 1=1";
@@ -26,9 +21,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-/**
- * POST /api/laptops
- */
 router.post("/", async (req, res) => {
   const {
     vendor,
@@ -55,9 +47,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-/**
- * DELETE /api/laptops/:id
- */
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
 

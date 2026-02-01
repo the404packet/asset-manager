@@ -39,6 +39,25 @@ const ASSET_SCHEMAS = {
       throughput_gbps: "number",
       management_ip: "text"
     }
+  },
+  switches: {
+    endpoint: "switches",
+    fields: {
+      vendor: "text",
+      model: "text",
+      ports : "number",
+      firmware: "text",
+      management_ip: "text"
+    }
+  },
+  access_points: {
+    endpoint: "access-points",
+    fields: {
+      vendor: "text",
+      model: "text",
+      standard: "text",
+      management_ip: "text"
+    }
   }
 };
 
