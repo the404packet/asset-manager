@@ -85,7 +85,7 @@ docker compose version
 
 #### Clone the repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/the404packet/asset-manager.git
 cd asset-manager
 docker-compose up --build
 ```
