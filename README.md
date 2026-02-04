@@ -70,8 +70,7 @@ sudo apt install docker.io docker-compose-plugin
 ```
 (Optional but recommended)
 ```bash
-sudo usermod -aG docker $USER
-sudo chmod 777 /var/lib/docker
+sudo chmod 777 /var/run/docker.sock
 ```
 Log out and back in after this.
 
